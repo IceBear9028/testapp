@@ -13,15 +13,12 @@ const CsvTestComponent = () => {
             event.preventDefault();
             setFile(event.target.files[0]);
             const promise = csvFileToArray(event.target.files[0])
-            console.log(promise);
             const getData = () => {
                 promise.then(appData => {
-                    console.log(appData + '변환한 데이터');
-                    test = appData;
-                    return appData
+                    setData(appData);
                 })
             }
-            setData(getData);
+            getData();
         }
     }
     const stateCheck = () => {

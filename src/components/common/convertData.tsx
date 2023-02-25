@@ -15,10 +15,18 @@ export const csvFileToArray = (file : any) => {
         if(typeof(text) === 'string'){
             const csvHeader : string[] = text.slice(0, text.indexOf("\n")).split(",");
             const csvRows : string[] = text.slice(text.indexOf("\n") + 1).split("\n");
-
+            const filterNullKey = (rowData : any[]) => {
+                return rowData.map((element) => {
+                    if(element == ''){
+                        return 'id'
+                    }else{
+                        return element
+                    }
+                })
+            }
             const array = csvRows.map(i => {
                 const values = i.split(",");
-                const obj = csvHeader.reduce((object:any, header : string, index:number) => {
+                const obj = filterNullKey(csvHeader).reduce((object:any, header : string, index:number) => {
                     object[header] = values[index];
                     return object;
                 }, {});
