@@ -1,15 +1,16 @@
 import {STORE_DATA} from "./types";
+import { csvFileToArray } from "../../components/common/convertData";
 
-interface CsvData{
-    [state : string] : any
-
-}
-interface ReadCsvType{
-    data : CsvData;
-}
-export const readCsv = ({data} : ReadCsvType) => {
-    return{
-        type : STORE_DATA,
-        payload : {data}
+export const storeDataThunk = (file : any) => {
+    return async (dispatch : any, getState : any) => {
+        const convertData:any = await csvFileToArray(file).then(data => data);
+        const columnName:string[] = Object.keys(convertData[0]);
+        dispatch({
+            type : STORE_DATA,
+            payload : {
+                data : convertData,
+                columnName : columnName
+            }
+        })
     }
 }
