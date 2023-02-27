@@ -2,6 +2,7 @@ import React from 'react';
 import CsvTestComponent from "./components/readCsvFile";
 import ShowArrayComponent from './components/testShowArray';
 import './App.css';
+import DownloadDataComponent from './components/downloaData';
 
 function App() {
     const testData = [
@@ -25,6 +26,7 @@ function App() {
         <div className="App">
             <ShowArrayComponent props={testData}/>
             <CsvTestComponent/>
+            <DownloadDataComponent/>
         </div>
     );
 }

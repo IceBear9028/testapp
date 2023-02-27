@@ -1,9 +1,11 @@
 import React from "react";
 import {combineReducers} from "redux";
 import fileData from "./readCsvFile_reducer";
+import downloadData from "./downloadData_reducer";
 
 const rootReducer = combineReducers({
-    fileData
+    fileData,
+    downloadData,
 })
 
 export default rootReducer;
